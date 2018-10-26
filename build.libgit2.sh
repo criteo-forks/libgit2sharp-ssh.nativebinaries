@@ -2,6 +2,7 @@
 
 LIBGIT2SHA=`cat ./nuget.package/libgit2/libgit2_hash.txt`
 SHORTSHA=${LIBGIT2SHA:0:7}
+BASEDIR=$(pwd)
 
 if [ $OS == "Darwin" ]; then
 
@@ -44,6 +45,9 @@ else
 cmake -DCMAKE_BUILD_TYPE:STRING=Release \
       -DBUILD_CLAR:BOOL=OFF \
       -DUSE_SSH=ON \
+      -DLIBSSH2_FOUND=ON \
+      -DLIBSSH2_LIBRARIES=$BASEDIR/libssh2/bin/src/libssh2.a \
+      -DLIBSSH2_INCLUDE_DIRS=$BASEDIR/libssh2/include \
       -DENABLE_TRACE=ON \
       -DLIBGIT2_FILENAME=git2-ssh-$SHORTSHA \
       -DCMAKE_OSX_ARCHITECTURES="i386;x86_64" \
