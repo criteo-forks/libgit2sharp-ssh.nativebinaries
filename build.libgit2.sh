@@ -4,6 +4,13 @@ LIBGIT2SHA=`cat ./nuget.package/libgit2/libgit2_hash.txt`
 SHORTSHA=${LIBGIT2SHA:0:7}
 BASEDIR=$(pwd)
 
+cd libssh2
+mkdir bin
+cd bin
+cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
+make
+cd $BASEDIR
+
 if [ $OS == "Darwin" ]; then
 
 rm -rf libssh2/build
