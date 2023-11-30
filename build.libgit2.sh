@@ -7,8 +7,8 @@ BASEDIR=$(pwd)
 cd libssh2
 mkdir bin
 cd bin
-cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
-make
+cmake -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DBUILD_SHARED_LIBS=OFF ..
+cmake --build .
 cd $BASEDIR
 
 if [ $OS == "Darwin" ]; then
